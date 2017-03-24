@@ -1,0 +1,24 @@
+{
+  "name": "entrypoint-assets-webpack-plugin",
+  "version": "1.0.0",
+  "description": "Exports a mapping of entries to public paths of chunks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "entrypoint",
+    "asset",
+    "plugin",
+    "entry"
+  ],
+  "author": "Klavs Prieditis",
+  "license": "MIT",
+  "dependencies": {
+    "webpack-core": "^0.6.9"
+  },
+  "peerDependencies": {
+    "webpack": "^2.0.0 || ^2.1.0-beta || ^2.2.0-rc"
+  }
+}
