@@ -37,10 +37,11 @@ Install via npm:
 npm install entrypoint-assets-webpack-plugin
 ```
 
-And then require and provide to webpack:
+Usage example:
 
 ```javascript
-const EntrypointAssetsPlugin = require('entrypoint-assets-webpack-plugin');
+const webpack = require('webpack')
+const EntrypointAssetsPlugin = require('entrypoint-assets-webpack-plugin')
 
 module.exports = {
     entry: {
