@@ -13,7 +13,17 @@
     "plugin",
     "entry"
   ],
-  "author": "Klavs Prieditis",
+  "author": {
+    "name": "Klavs Prieditis",
+    "email": "klavs.prieditis@getadigital.com",
+    "url": "https://getadigital.com/people/klavs-prieditis/"
+  },
+  "homepage":  "https://github.com/Geta/entrypoint-assets-webpack-plugin",
+  "bugs": "https://github.com/Geta/entrypoint-assets-webpack-plugin/issues",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Geta/entrypoint-assets-webpack-plugin.git"
+  },
   "license": "MIT",
   "dependencies": {
     "webpack-core": "^0.6.9"
