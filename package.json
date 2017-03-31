@@ -1,6 +1,6 @@
 {
   "name": "entrypoint-assets-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Exports a mapping of entries to public paths of chunks",
   "main": "index.js",
   "scripts": {
