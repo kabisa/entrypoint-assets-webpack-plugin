@@ -20,8 +20,7 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
             hash: compilation.hash
         });
         const entrypoints = {}
-        Object.keys(compilation.entrypoints).forEach(name => {
-            const ep = compilation.entrypoints[name]
+        compilation.entrypoints.forEach((ep, name, mapObj) => {
             const chunks = removeDuplicateChunks ? ep.chunks.filter((chunk, pos, self) => self.indexOf(chunk) === pos) : ep.chunks
             const assets = chunks
                 .reduce((array, c) => array.concat(c.files || []), [])
