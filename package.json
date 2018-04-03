@@ -1,7 +1,7 @@
 {
   "name": "zjensen-entrypoint-assets-webpack-plugin",
   "version": "2.0.0",
-  "description": "Exports a mapping of entries to public paths of chunks",
+  "description": "Fork of https://github.com/Geta/entrypoint-assets-webpack-plugin, with added webpack 4 compatibility",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,15 +14,15 @@
     "entry"
   ],
   "author": {
-    "name": "Klavs Prieditis",
-    "email": "klavs.prieditis@getadigital.com",
-    "url": "https://getadigital.com/people/klavs-prieditis/"
+    "name": "Zachary Jensen",
+    "email": "zsjensen@gmail.com",
+    "url": "https://zacharyj.io"
   },
-  "homepage":  "https://github.com/Geta/entrypoint-assets-webpack-plugin",
-  "bugs": "https://github.com/Geta/entrypoint-assets-webpack-plugin/issues",
+  "homepage":  "https://github.com/zjensen/entrypoint-assets-webpack-plugin",
+  "bugs": "https://github.com/zjensen/entrypoint-assets-webpack-plugin/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Geta/entrypoint-assets-webpack-plugin.git"
+    "url": "git@github.com:zjensen/entrypoint-assets-webpack-plugin.git"
   },
   "license": "MIT",
   "dependencies": {
