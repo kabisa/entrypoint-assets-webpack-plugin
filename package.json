@@ -1,5 +1,5 @@
 {
-  "name": "entrypoint-assets-webpack-plugin",
+  "name": "zjensen-entrypoint-assets-webpack-plugin",
   "version": "2.0.0",
   "description": "Exports a mapping of entries to public paths of chunks",
   "main": "index.js",
