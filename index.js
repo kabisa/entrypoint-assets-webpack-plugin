@@ -14,10 +14,11 @@ function EntrypointAssetsPlugin(options) {
 
 EntrypointAssetsPlugin.prototype.apply = function(compiler) {
     const filename = this.filename
+    const path = this.path
     const mappings = this.mappings
     const removeDuplicateChunks = this.removeDuplicateChunks
     compiler.plugin("emit", function(compilation, callback) {
-        const publicPath = compilation.mainTemplate.getAssetPath(this.path, {
+        const publicPath = compilation.mainTemplate.getAssetPath(path, {
             hash: compilation.hash
         });
         const entrypoints = {}
