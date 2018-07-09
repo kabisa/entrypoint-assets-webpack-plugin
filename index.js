@@ -3,6 +3,7 @@ const RawSource = require("webpack-core/lib/RawSource")
 function EntrypointAssetsPlugin(options) {
     options = options || {}
     this.filename = options.filename || "entrypoints.json"
+    this.path = options.path || "/assets/"
     this.mappings = Object.assign({
         "js": /\.js$/,
         "map": /\.map$/,
@@ -16,7 +17,7 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
     const mappings = this.mappings
     const removeDuplicateChunks = this.removeDuplicateChunks
     compiler.plugin("emit", function(compilation, callback) {
-        const publicPath = compilation.mainTemplate.getPublicPath({
+        const publicPath = compilation.mainTemplate.getAssetPath(this.path, {
             hash: compilation.hash
         });
         const entrypoints = {}
