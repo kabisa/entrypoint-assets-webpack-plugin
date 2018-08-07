@@ -23,17 +23,21 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
         });
         const entrypoints = {}
         compilation.entrypoints.forEach((ep, name, mapObj) => {
-            const chunks = removeDuplicateChunks ? ep.chunks.filter((chunk, pos, self) => self.indexOf(chunk) === pos) : ep.chunks
-            const assets = chunks
+            const assets = ep.chunks
                 .reduce((array, c) => array.concat(c.files || []), [])
-                .map(asset => publicPath + asset)
-            entrypoints[name] = {}
+                // Filter away empty files
+                .filter(asset => compilation.assets[asset].source().length > 0)
+                .map(asset => publicPath + asset);
+            entrypoints[name] = {};
             Object.keys(mappings).forEach(mapping => {
-                const regex = mappings[mapping]
-                entrypoints[name][mapping] = assets.filter(asset => regex.test(asset))
+                const regex = mappings[mapping];
+                const assetEntries = assets
+                    .filter(asset => regex.test(asset))
+                    .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
+                entrypoints[name][mapping] = assetEntries
             })
         });
-        compilation.assets[filename] = new RawSource(JSON.stringify(entrypoints))
+        compilation.assets[filename] = new RawSource(JSON.stringify(entrypoints));
         callback();
     });
 };
