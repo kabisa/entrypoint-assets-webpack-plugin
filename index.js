@@ -27,6 +27,7 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
         compilation.entrypoints.forEach((ep, name, mapObj) => {
             const assets = ep.chunks
                 .reduce((array, c) => array.concat(c.files || []), [])
+                .filter(asset => !!compilation.assets[asset])
                 .map(asset => publicPath + asset);
             entrypoints[name] = {};
             Object.keys(mappings).forEach(mapping => {
@@ -34,7 +35,6 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
                 const assetEntries = assets
                     .filter(asset => regex.test(asset))
                     .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
-                    .filter(asset => !!compilation.assets[asset])
                 entrypoints[name][mapping] = assetEntries
             })
         });
