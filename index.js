@@ -1,5 +1,4 @@
 const RawSource = require("webpack-core/lib/RawSource")
-const fs = require("fs");
 
 function EntrypointAssetsPlugin(options) {
     options = options || {}
@@ -32,15 +31,11 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
             entrypoints[name] = {};
             Object.keys(mappings).forEach(mapping => {
                 const regex = mappings[mapping];
-                entrypoints[name][mapping] = assets
-                  .filter(asset => regex.test(asset))
-                  .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
-
-                console.log(assets
-                  .filter(asset => regex.test(asset))
-                  .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
-                  .map(asset => `${asset} - ${fs.existsSync(outputFolder + asset)}`)
-                )
+                const assetEntries = assets
+                    .filter(asset => regex.test(asset))
+                    .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
+                    .filter(asset => !!compilation.assets[asset])
+                entrypoints[name][mapping] = assetEntries
             })
         });
         compilation.assets[filename] = new RawSource(JSON.stringify(entrypoints));
