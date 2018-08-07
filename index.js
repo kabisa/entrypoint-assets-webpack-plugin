@@ -26,7 +26,6 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
         });
         const entrypoints = {}
         compilation.entrypoints.forEach((ep, name, mapObj) => {
-            const chunks = removeDuplicateChunks ? ep.chunks.filter((chunk, pos, self) => self.indexOf(chunk) === pos) : ep.chunks;
             const assets = chunks
                 .reduce((array, c) => array.concat(c.files || []), [])
                 .map(asset => publicPath + asset);
@@ -35,7 +34,13 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
                 const regex = mappings[mapping];
                 entrypoints[name][mapping] = assets
                   .filter(asset => regex.test(asset))
-                  .filter(asset => fs.existsSync(outputFolder + asset))
+                  .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
+
+                console.log(entrypoints[name][mapping] = assets
+                  .filter(asset => regex.test(asset))
+                  .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
+                  .map(asset => outputFolder + asset)
+                )
             })
         });
         compilation.assets[filename] = new RawSource(JSON.stringify(entrypoints));
