@@ -17,8 +17,6 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
     const path = this.path
     const mappings = this.mappings
     const removeDuplicateChunks = this.removeDuplicateChunks
-    const outputFolder = compiler.options.output.path;
-
     compiler.plugin("emit", function(compilation, callback) {
         const publicPath = compilation.mainTemplate.getAssetPath(path, {
             hash: compilation.hash
