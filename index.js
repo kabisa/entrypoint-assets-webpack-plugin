@@ -36,10 +36,10 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
                   .filter(asset => regex.test(asset))
                   .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
 
-                console.log(entrypoints[name][mapping] = assets
+                console.log(assets
                   .filter(asset => regex.test(asset))
                   .filter((asset, pos, list) => list.indexOf(asset) === pos || !removeDuplicateChunks)
-                  .map(asset => outputFolder + asset)
+                  .map(asset => `${asset} - ${fs.existsSync(outputFolder + asset)}`)
                 )
             })
         });
