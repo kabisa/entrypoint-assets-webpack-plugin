@@ -27,7 +27,8 @@ EntrypointAssetsPlugin.prototype.apply = function(compiler) {
         compilation.entrypoints.forEach((ep, name, mapObj) => {
             const assets = ep.chunks
                 .reduce((array, c) => array.concat(c.files || []), [])
-                .filter(asset => !!compilation.assets[asset])
+                // Filter away empty files
+                .filter(asset => compilation.assets[asset].source().length > 0)
                 .map(asset => publicPath + asset);
             entrypoints[name] = {};
             Object.keys(mappings).forEach(mapping => {
